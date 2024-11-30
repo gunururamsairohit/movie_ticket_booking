@@ -1,0 +1,15 @@
+ECHO is on.
+# Python bytecode files
+*.pyc
+
+__pycache__/
+
+
+# Database files
+db.sqlite3
+*.sqlite3
+# Django migrations
+*/migrations/*
+
+# Media and static files
+/media/
