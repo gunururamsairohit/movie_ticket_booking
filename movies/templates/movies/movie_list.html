@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Movie Ticket Booking</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-image: url('/static/background.jpg'); /* Replace with the path to your image */
+            background-size: cover; /* Ensures the image covers the entire screen */
+            background-repeat: no-repeat; /* Prevents the image from repeating */
+            background-attachment: fixed; /* Keeps the background fixed during scrolling */
+            color: rgb(255, 255, 255); /* White text color for readability */
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        h1 {
+            text-align: center;
+            padding: 20px;
+            background-color: rgba(0, 0, 0, 0.6); /* Semi-transparent header background */
+            color: white;
+            font-size: 32px;
+            margin: 0;
+            border-bottom: 3px solid rgba(255, 255, 255, 0.5);
+        }
+
+        /* About Section */
+        .about-section {
+            text-align: center;
+            padding: 20px;
+            background-color: rgba(0, 0, 0, 0.6); /* Semi-transparent background */
+            margin: 20px 0;
+            border-radius: 8px;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .about-section h2 {
+            color: #ffdd57; /* Highlight color for the heading */
+            font-size: 28px;
+        }
+
+        .about-section p {
+            color: white;
+            font-size: 18px;
+            margin-top: 10px;
+            line-height: 1.6;
+        }
+
+        .movie-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            list-style: none;
+            padding: 20px;
+            justify-content: center; /* Center align the movies */
+            margin-top: 20px;
+        }
+
+        .movie-item {
+            width: 250px;
+            text-align: center;
+            border: 1px solid #ddd;
+            border-radius: 12px;
+            padding: 15px;
+            background-color: rgba(0, 0, 0, 0.7); /* Semi-transparent background for contrast */
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+            transition: transform 0.3s ease, box-shadow 0.3s ease; /* Smooth hover transition */
+        }
+
+        .movie-item:hover {
+            transform: translateY(-10px); /* Slightly lift the item on hover */
+            box-shadow: 0 12px 24px rgba(0, 0, 0, 0.5); /* Stronger shadow effect */
+        }
+
+        .movie-item img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 8px;
+            transition: transform 0.3s ease; /* Smooth image zoom effect */
+        }
+
+        .movie-item img:hover {
+            transform: scale(1.05); /* Zoom effect on image hover */
+        }
+
+        .movie-item h2 {
+            font-size: 18px;
+            margin: 10px 0;
+            color: white;
+            font-weight: bold;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        /* Optional: Add responsive behavior for smaller screens */
+        @media (max-width: 768px) {
+            .movie-list {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .movie-item {
+                width: 80%; /* Make movie cards smaller on mobile */
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- About Section -->
+    <div class="about-section">
+        <h2>Welcome to the Movie Ticket Booking!</h2>
+        <p>
+            Discover a wide selection of movies available for booking your tickets. Browse through the list, check out the movie details, and book your tickets for an amazing cinematic experience. Whether you're into action, drama, or comedy, we have something for everyone. Start exploring now!
+        </p>
+    </div>
+
+    <h1>Movie List</h1>
+    <ul class="movie-list">
+        {% for movie in movies %}
+            <li class="movie-item">
+                <a href="{% url 'movie_detail' movie.id %}">
+                    <img src="{{ movie.image.url }}" alt="{{ movie.title }}">
+                    <h2>{{ movie.title }}</h2>
+                </a>
+            </li>
+        {% endfor %}
+    </ul>
+</body>
+</html>
